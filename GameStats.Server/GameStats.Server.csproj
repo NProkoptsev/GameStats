@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D0D79B41-39D6-496A-B74A-C8DFDDF4D7B8}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GameStats.Server</RootNamespace>
+    <AssemblyName>GameStats.Server</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentCommandLineParser, Version=1.4.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentCommandLineParser.1.4.3\lib\net35\FluentCommandLineParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LiteDB, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.3.1.0\lib\net35\LiteDB.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.6.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Dataflow.4.7.0\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\DateWrapper.cs" />
+    <Compile Include="Entities\MatchInfo.cs" />
+    <Compile Include="Entities\Score.cs" />
+    <Compile Include="Entities\ServerInfo.cs" />
+    <Compile Include="Helpers\FieldBackuper.cs" />
+    <Compile Include="Reports\BestPlayers.cs" />
+    <Compile Include="Reports\IBaseReport.cs" />
+    <Compile Include="Reports\IReportsManager.cs" />
+    <Compile Include="Reports\PopularServers.cs" />
+    <Compile Include="Reports\RecentMatches.cs" />
+    <Compile Include="Reports\ReportsManager.cs" />
+    <Compile Include="Routing\ErrorRoute.cs" />
+    <Compile Include="Routing\IRoute.cs" />
+    <Compile Include="Routing\PlayersStatsRoute.cs" />
+    <Compile Include="Routing\ServersEndpointInfoRoute.cs" />
+    <Compile Include="Routing\ServersEndpointMatchesRoute.cs" />
+    <Compile Include="Routing\ServersEndpointStatsRoute.cs" />
+    <Compile Include="Routing\ReportsRoute.cs" />
+    <Compile Include="Routing\ServersInfoRoute.cs" />
+    <Compile Include="Routing\Router.cs" />
+    <Compile Include="Storage\IMatchStorage.cs" />
+    <Compile Include="Storage\IServerStorage.cs" />
+    <Compile Include="Storage\MatchData.cs" />
+    <Compile Include="Storage\MatchStorage.cs" />
+    <Compile Include="Storage\ServerData.cs" />
+    <Compile Include="Statistics\PlayerStatisticsManager.cs" />
+    <Compile Include="Statistics\PlayerStatistics\AverageScoreboardPercent.cs" />
+    <Compile Include="Statistics\PlayerStatistics\FavoriteGameMode.cs" />
+    <Compile Include="Statistics\PlayerStatistics\FavouriteServer.cs" />
+    <Compile Include="Statistics\PlayerStatistics\KillToDeathRatio.cs" />
+    <Compile Include="Statistics\PlayerStatistics\LastMatchPlayed.cs" />
+    <Compile Include="Statistics\PlayerStatistics\TotalMatchesWon.cs" />
+    <Compile Include="Statistics\PlayerStatistics\UniqueServers.cs" />
+    <Compile Include="Statistics\AverageMatchesPerDay.cs" />
+    <Compile Include="Statistics\ServerStatisticsManager.cs" />
+    <Compile Include="Statistics\ServerStatistics\AveragePopulation.cs" />
+    <Compile Include="Statistics\IBaseStatistics.cs" />
+    <Compile Include="Statistics\MaximumMatchesPerDay.cs" />
+    <Compile Include="Statistics\ServerStatistics\MaximumPopulation.cs" />
+    <Compile Include="Statistics\ServerStatistics\Top5GameModes.cs" />
+    <Compile Include="Statistics\ServerStatistics\Top5Maps.cs" />
+    <Compile Include="Statistics\StatisticsManager.cs" />
+    <Compile Include="Statistics\TotalMatchesPlayed.cs" />
+    <Compile Include="StatServer.cs" />
+    <Compile Include="EntryPoint.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\ServerStorage.cs" />
+    <Compile Include="Tests\Statistics_Should.cs" />
+    <Compile Include="Tests\StatServer_Should.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Statistics\ServerStatistics\App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
